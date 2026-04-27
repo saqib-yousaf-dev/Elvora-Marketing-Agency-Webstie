@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elvora Marketing Agency</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="images/Gemini_Generated_Image_u3704vu3704vu370-removebg-preview.png">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #E8C97A;
+      --dark: #0A0A0A;
+      --dark-2: #111111;
+      --dark-3: #1A1A1A;
+      --dark-4: #222222;
+      --cream: #F5EDD6;
+      --text-muted-custom: #888888;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    h1, h2, h3, .display-font { font-family: 'Bebas Neue', sans-serif; letter-spacing: .04em; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(10,10,10,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-brand img { height: 44px; filter: invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(1.1); }
+    .nav-link {
+      color: rgba(255,255,255,.75) !important;
+      font-size: .88rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 6px 18px !important;
+      transition: color .3s;
+    }
+    .nav-link:hover { color: var(--gold) !important; }
+    .btn-gold {
+      background: var(--gold);
+      color: #000;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border: none;
+      padding: 10px 28px;
+      font-size: .82rem;
+      transition: background .3s, transform .2s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); color: #000; }
+    .btn-outline-gold {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 10px 28px;
+      font-size: .82rem;
+      transition: all .3s;
+    }
+    .btn-outline-gold:hover { background: var(--gold); color: #000; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .hero-grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+      top: -100px; right: -150px;
+      pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.07) 0%, transparent 70%);
+      bottom: 0; left: -80px;
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: .75rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      line-height: .92;
+      color: #fff;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,.6);
+      max-width: 500px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+    .hero-stat { border-left: 2px solid var(--gold); padding-left: 18px; }
+    .hero-stat .num { font-family: 'Bebas Neue', sans-serif; font-size: 2.6rem; color: var(--gold); line-height: 1; }
+    .hero-stat .label { font-size: .78rem; letter-spacing: .1em; color: rgba(255,255,255,.5); text-transform: uppercase; }
+    .hero-scroll-line {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.3);
+      font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
+    }
+    .hero-scroll-line span { animation: scrollBounce 2s infinite; }
+    @keyframes scrollBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+    /* ── MARQUEE ── */
+    .marquee-section {
+      background: var(--gold);
+      padding: 16px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 48px;
+      animation: marquee 18s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: #000;
+      letter-spacing: .1em;
+    }
+    .marquee-dot { color: rgba(0,0,0,.4); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 100px 0; }
+    .section-tag {
+      display: inline-block;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 4px;
+      margin-bottom: 20px;
+    }
+    .section-title { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; }
+    .section-title span { color: var(--gold); }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--dark-2); }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-box {
+      background: var(--dark-3);
+      border: 1px solid rgba(201,168,76,.2);
+      height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,.08) 0%, transparent 60%);
+    }
+    .about-corner { position: absolute; width: 30px; height: 30px; border-color: var(--gold); border-style: solid; }
+    .about-corner.tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .about-corner.tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+    .about-corner.bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+    .about-corner.br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 110px; height: 110px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      color: #000;
+    }
+    .about-badge .yr { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; }
+    .about-badge .yrlab { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+    .about-feature { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+    .about-feature-icon { width: 42px; height: 42px; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.25); display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0; font-size: 1.1rem; }
+    .about-feature h6 { font-size: .9rem; margin-bottom: 4px; font-weight: 600; }
+    .about-feature p { font-size: .82rem; color: var(--text-muted-custom); line-height: 1.6; margin: 0; }
+
+    /* ── SERVICES ── */
+    .services-section { background: var(--dark); }
+    .service-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,.07);
+      padding: 36px 32px;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .3s, transform .3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+    .service-card:hover { border-color: rgba(201,168,76,.3); transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 54px; height: 54px;
+      background: rgba(201,168,76,.08);
+      border: 1px solid rgba(201,168,76,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .service-card h4 { font-size: 1.1rem; margin-bottom: 12px; font-weight: 600; }
+    .service-card p { font-size: .85rem; color: var(--text-muted-custom); line-height: 1.75; margin: 0; }
+    .service-num {
+      position: absolute; top: 28px; right: 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(255,255,255,.04);
+      line-height: 1;
+    }
+    .service-link { color: var(--gold); font-size: .8rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; margin-top: 18px; display: inline-flex; align-items: center; gap: 6px; transition: gap .3s; }
+    .service-link:hover { gap: 12px; color: var(--gold-light); }
+
+    /* ── PROCESS ── */
+    .process-section { background: var(--dark-2); }
+    .process-step { display: flex; gap: 24px; align-items: flex-start; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+    .process-step:last-child { border-bottom: none; }
+    .process-num { font-family: 'Bebas Neue', sans-serif; font-size: 4rem; color: rgba(201,168,76,.2); line-height: 1; min-width: 70px; }
+    .process-step h5 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .process-step p { font-size: .85rem; color: var(--text-muted-custom); line-height: 1.75; margin: 0; }
+    .process-visual {
+      background: var(--dark-3);
+      border: 1px solid rgba(201,168,76,.12);
+      padding: 40px;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 460px;
+      position: relative;
+    }
+    .process-circle { position: relative; width: 260px; height: 260px; }
+    .process-circle-ring {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,168,76,.3);
+      animation: spin 20s linear infinite;
+    }
+    .process-circle-ring-2 {
+      position: absolute; inset: 24px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201,168,76,.15);
+      animation: spin 30s linear infinite reverse;
+    }
+    .process-circle-center {
+      position: absolute; inset: 50px;
+      border-radius: 50%;
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      color: var(--gold);
+      text-align: center;
+    }
+    @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+    .orbit-dot {
+      position: absolute; width: 10px; height: 10px; border-radius: 50%; background: var(--gold);
+      transform-origin: 130px 130px;
+    }
+
+    /* ── STATS ── */
+    .stats-section {
+      background: var(--gold);
+      padding: 70px 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .big { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; color: #000; line-height: 1; }
+    .stat-item .lbl { font-size: .82rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(0,0,0,.65); font-weight: 600; margin-top: 6px; }
+    .stat-divider { width: 1px; background: rgba(0,0,0,.15); margin: 0 auto; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section { background: var(--dark); }
+    .testi-card {
+      background: var(--dark-3);
+      border: 1px solid rgba(255,255,255,.07);
+      padding: 36px;
+      height: 100%;
+      position: relative;
+    }
+    .testi-quote { font-size: 3rem; color: var(--gold); line-height: 1; font-family: Georgia, serif; margin-bottom: 16px; opacity: .5; }
+    .testi-text { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.8; margin-bottom: 24px; font-weight: 300; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: #000; flex-shrink: 0; }
+    .testi-name { font-size: .88rem; font-weight: 600; }
+    .testi-role { font-size: .76rem; color: var(--text-muted-custom); }
+    .testi-stars { color: var(--gold); font-size: .8rem; margin-bottom: 18px; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--dark-2);
+      border-top: 1px solid rgba(201,168,76,.1);
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,.08) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .cta-section h2 { font-size: clamp(2.8rem, 6vw, 5rem); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000;
+      padding: 70px 0 30px;
+      border-top: 1px solid rgba(201,168,76,.1);
+    }
+    .footer-logo img { height: 40px; filter: invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(1.1); margin-bottom: 16px; }
+    .footer-desc { font-size: .85rem; color: rgba(255,255,255,.45); line-height: 1.8; max-width: 280px; }
+    .footer-heading { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .1em; color: var(--gold); margin-bottom: 20px; }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { color: rgba(255,255,255,.45); text-decoration: none; font-size: .84rem; transition: color .3s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); font-size: .9rem;
+      transition: all .3s; text-decoration: none;
+    }
+    .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 24px; margin-top: 50px; }
+    .footer-bottom p { font-size: .78rem; color: rgba(255,255,255,.3); }
+
+    /* ── Animations ── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Navbar toggler */
+    .navbar-toggler { border-color: rgba(201,168,76,.4); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    @media (max-width: 768px) {
+      section { padding: 70px 0; }
+      .hero { min-height: auto; padding: 120px 0 80px; }
+      .about-badge { width: 90px; height: 90px; bottom: -14px; right: -14px; }
+      .about-badge .yr { font-size: 1.6rem; }
+      .process-visual { min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="" alt=""/>
+      <span class="logo-text" style="color: white;">Elvora Stratigies</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Results</a></li>
+        <li class="nav-item ms-2"><a class="btn btn-gold" href="#contact">Get Started</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7 fade-up">
+        <div class="hero-tag">Premium Digital Marketing</div>
+        <h1>GROW<br><span>BOLD.</span><br>SCALE FAST.</h1>
+        <p class="hero-sub mt-4 mb-5">Elvora transforms brands into market leaders through data-driven strategy, creative storytelling, and relentless digital execution.</p>
+        <div class="d-flex flex-wrap gap-3 mb-5">
+          <a href="#contact" class="btn btn-gold btn-lg">Start Your Journey</a>
+          <a href="#services" class="btn btn-outline-gold btn-lg">Explore Services</a>
+        </div>
+        <div class="d-flex gap-4 flex-wrap">
+          <div class="hero-stat">
+            <div class="num">350+</div>
+            <div class="label">Brands Scaled</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">12M+</div>
+            <div class="label">Leads Generated</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">97%</div>
+            <div class="label">Client Retention</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 fade-up" style="transition-delay:.2s">
+        <div style="border:1px solid rgba(201,168,76,.15); padding:40px; background:rgba(255,255,255,.02); position:relative;">
+          <div style="position:absolute;top:-1px;left:-1px;width:24px;height:24px;border-top:2px solid var(--gold);border-left:2px solid var(--gold);"></div>
+          <div style="position:absolute;top:-1px;right:-1px;width:24px;height:24px;border-top:2px solid var(--gold);border-right:2px solid var(--gold);"></div>
+          <div style="position:absolute;bottom:-1px;left:-1px;width:24px;height:24px;border-bottom:2px solid var(--gold);border-left:2px solid var(--gold);"></div>
+          <div style="position:absolute;bottom:-1px;right:-1px;width:24px;height:24px;border-bottom:2px solid var(--gold);border-right:2px solid var(--gold);"></div>
+          <p class="section-tag">Why Elvora</p>
+          <div class="mb-3">
+            <div class="d-flex align-items-center gap-3 mb-3 pb-3" style="border-bottom:1px solid rgba(255,255,255,.06)">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;flex-shrink:0;"><i class="bi bi-lightning-charge-fill"></i></div>
+              <div>
+                <div style="font-size:.88rem;font-weight:600;">Performance-First Approach</div>
+                <div style="font-size:.78rem;color:var(--text-muted-custom);">Every decision is backed by data.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3 mb-3 pb-3" style="border-bottom:1px solid rgba(255,255,255,.06)">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;flex-shrink:0;"><i class="bi bi-people-fill"></i></div>
+              <div>
+                <div style="font-size:.88rem;font-weight:600;">Dedicated Account Team</div>
+                <div style="font-size:.78rem;color:var(--text-muted-custom);">Your success is our full-time job.</div>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div style="width:36px;height:36px;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;flex-shrink:0;"><i class="bi bi-graph-up-arrow"></i></div>
+              <div>
+                <div style="font-size:.88rem;font-weight:600;">Measurable ROI Guaranteed</div>
+                <div style="font-size:.78rem;color:var(--text-muted-custom);">Real results, transparent reporting.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-line">
+    <span><i class="bi bi-chevron-down fs-5"></i></span>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span>SEO Optimization</span><span class="marquee-dot">◆</span>
+    <span>Social Media Marketing</span><span class="marquee-dot">◆</span>
+    <span>Digital Advertising</span><span class="marquee-dot">◆</span>
+    <span>Content Strategy</span><span class="marquee-dot">◆</span>
+    <span>Brand Identity</span><span class="marquee-dot">◆</span>
+    <span>PPC Campaigns</span><span class="marquee-dot">◆</span>
+    <span>Email Marketing</span><span class="marquee-dot">◆</span>
+    <span>Web Design</span><span class="marquee-dot">◆</span>
+    <span>Analytics & Reporting</span><span class="marquee-dot">◆</span>
+    <span>SEO Optimization</span><span class="marquee-dot">◆</span>
+    <span>Social Media Marketing</span><span class="marquee-dot">◆</span>
+    <span>Digital Advertising</span><span class="marquee-dot">◆</span>
+    <span>Content Strategy</span><span class="marquee-dot">◆</span>
+    <span>Brand Identity</span><span class="marquee-dot">◆</span>
+    <span>PPC Campaigns</span><span class="marquee-dot">◆</span>
+    <span>Email Marketing</span><span class="marquee-dot">◆</span>
+    <span>Web Design</span><span class="marquee-dot">◆</span>
+    <span>Analytics & Reporting</span><span class="marquee-dot">◆</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-5 fade-up">
+        <div class="about-img-wrap">
+          <div class="about-img-box">
+            <div class="about-corner tl"></div>
+            <div class="about-corner tr"></div>
+            <div class="about-corner bl"></div>
+            <div class="about-corner br"></div>
+            <div style="text-align:center;position:relative;z-index:1;">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.2em;color:rgba(255,255,255,.3);margin-bottom:16px;">ELVORA</div>
+              <div style="width:80px;height:1px;background:var(--gold);margin:0 auto 16px;"></div>
+              <div style="font-size:.8rem;color:rgba(255,255,255,.4);letter-spacing:.15em;text-transform:uppercase;">Marketing Agency</div>
+              <div style="margin-top:40px;display:flex;gap:20px;justify-content:center;">
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.2rem;"><i class="bi bi-instagram"></i></div>
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.2rem;"><i class="bi bi-facebook"></i></div>
+                <div style="width:50px;height:50px;border-radius:50%;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1.2rem;"><i class="bi bi-tiktok"></i></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-badge">
+            <div class="yr">8+</div>
+            <div class="yrlab">Years<br>Expert</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-1 fade-up" style="transition-delay:.2s">
+        <span class="section-tag">About Elvora</span>
+        <h2 class="section-title mb-4">WE TURN CLICKS INTO <span>CLIENTS</span></h2>
+        <p style="color:rgba(255,255,255,.6);line-height:1.9;font-size:.95rem;margin-bottom:36px;">Elvora Marketing Agency is a full-service digital powerhouse built for ambitious brands. We combine creative strategy with performance marketing to deliver campaigns that don't just look good — they drive real, measurable business growth.</p>
+        <div>
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="bi bi-bullseye"></i></div>
+            <div><h6>Precision Targeting</h6><p>We reach your ideal customer at the right moment with laser-focused audience segmentation and advanced ad targeting.</p></div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="bi bi-bar-chart-line-fill"></i></div>
+            <div><h6>Data-Driven Decisions</h6><p>Every campaign is backed by deep analytics and real-time optimization to maximize your marketing ROI.</p></div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="bi bi-palette2"></i></div>
+            <div><h6>Creative That Converts</h6><p>Our creative team produces content that stops the scroll, builds brand love, and moves people to act.</p></div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-gold mt-3">Work With Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Our Services</span>
+      <h2 class="section-title">WHAT WE DO <span>BEST</span></h2>
+      <p style="color:rgba(255,255,255,.5);max-width:500px;margin:16px auto 0;font-size:.9rem;line-height:1.8;">A complete suite of digital marketing services engineered to dominate your market.</p>
+    </div>
+    <div class="row g-4">
+      <!-- SEO -->
+      <div class="col-md-6 col-lg-4 fade-up">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon"><i class="bi bi-search"></i></div>
+          <h4>SEO Optimization</h4>
+          <p>Rank higher, get found faster. We engineer your online presence to dominate search results and capture high-intent organic traffic that converts.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Social Media -->
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.1s">
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon"><i class="bi bi-instagram"></i></div>
+          <h4>Social Media Handling</h4>
+          <p>Full-service social management across Instagram, Facebook, TikTok, LinkedIn, and X. Strategy, content creation, community management & growth.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Digital Marketing -->
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.2s">
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon"><i class="bi bi-megaphone-fill"></i></div>
+          <h4>Digital Marketing</h4>
+          <p>End-to-end digital campaigns spanning paid ads, remarketing, funnel building, and conversion rate optimization across all digital channels.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- PPC -->
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.1s">
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon"><i class="bi bi-cursor-fill"></i></div>
+          <h4>PPC & Paid Advertising</h4>
+          <p>Google Ads, Meta Ads, and programmatic campaigns built for maximum ROAS. Every dollar of ad spend is tracked, tested, and optimized.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Content -->
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.2s">
+        <div class="service-card">
+          <div class="service-num">05</div>
+          <div class="service-icon"><i class="bi bi-pen-fill"></i></div>
+          <h4>Content Marketing</h4>
+          <p>High-quality blogs, videos, graphics, and copy that educate your audience, build authority, and nurture leads through the sales funnel.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- Branding -->
+      <div class="col-md-6 col-lg-4 fade-up" style="transition-delay:.3s">
+        <div class="service-card">
+          <div class="service-num">06</div>
+          <div class="service-icon"><i class="bi bi-gem"></i></div>
+          <h4>Brand Strategy & Identity</h4>
+          <p>From logo to messaging, we craft brand identities that stand out, resonate deeply with your audience, and build lasting market presence.</p>
+          <a href="#contact" class="service-link">Learn More <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-section">
+  <div class="container">
+    <div class="row text-center gy-4">
+      <div class="col-6 col-md-3">
+        <div class="stat-item"><div class="big">350+</div><div class="lbl">Brands Scaled</div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item"><div class="big">12M+</div><div class="lbl">Leads Generated</div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item"><div class="big">8.4x</div><div class="lbl">Avg. ROAS</div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stat-item"><div class="big">97%</div><div class="lbl">Client Retention</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROCESS ── -->
+<section class="process-section" id="process">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6 fade-up">
+        <span class="section-tag">Our Process</span>
+        <h2 class="section-title">HOW WE <span>WORK</span></h2>
+        <p style="color:rgba(255,255,255,.5);margin-top:16px;font-size:.9rem;line-height:1.8;">A proven four-step framework that transforms your marketing from guesswork into a growth engine.</p>
+      </div>
+    </div>
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 fade-up">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div><h5>Discovery & Audit</h5><p>We deep-dive into your brand, competitors, and market to uncover gaps, opportunities, and the fastest path to growth.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div><h5>Strategy & Roadmap</h5><p>We build a custom, data-backed marketing strategy tailored to your goals, budget, and target audience.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div><h5>Execute & Launch</h5><p>Our team deploys campaigns across channels with precision — creative assets, copy, targeting, and tracking all dialed in.</p></div>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div><h5>Optimize & Scale</h5><p>We analyze results weekly, cut what doesn't work, double down on what does, and scale your winners aggressively.</p></div>
+        </div>
+      </div>
+      <div class="col-lg-5 offset-lg-1 fade-up" style="transition-delay:.2s">
+        <div class="process-visual">
+          <div class="process-circle">
+            <div class="process-circle-ring"></div>
+            <div class="process-circle-ring-2"></div>
+            <div class="process-circle-center">ELVORA<br>METHOD</div>
+            <div class="orbit-dot" style="top:0;left:50%;margin-left:-5px;margin-top:-5px;"></div>
+            <div class="orbit-dot" style="bottom:0;left:50%;margin-left:-5px;margin-bottom:-5px;background:rgba(201,168,76,.4);"></div>
+            <div class="orbit-dot" style="left:0;top:50%;margin-top:-5px;margin-left:-5px;background:rgba(201,168,76,.6);"></div>
+            <div class="orbit-dot" style="right:0;top:50%;margin-top:-5px;margin-right:-5px;background:rgba(201,168,76,.8);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <span class="section-tag">Client Results</span>
+      <h2 class="section-title">WHAT OUR <span>CLIENTS</span> SAY</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4 fade-up">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Elvora tripled our organic traffic in just 4 months. Their SEO strategy was unlike anything we'd seen — methodical, aggressive, and it actually worked.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AR</div>
+            <div>
+              <div class="testi-name">Ahmed Raza</div>
+              <div class="testi-role">CEO, TechVault Solutions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-up" style="transition-delay:.1s">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Our social media went from 2K to 85K followers in 6 months and sales followed. Elvora's content team just gets what audiences want to see.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SF</div>
+            <div>
+              <div class="testi-name">Sara Faisal</div>
+              <div class="testi-role">Founder, Bloom Cosmetics</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 fade-up" style="transition-delay:.2s">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-quote">"</div>
+          <p class="testi-text">10x return on ad spend in Q3. I was skeptical but the numbers don't lie. Best marketing investment our company has ever made. Period.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">OK</div>
+            <div>
+              <div class="testi-name">Omar Khan</div>
+              <div class="testi-role">Director, PrimeEdge Retail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section" id="contact">
+  <div class="cta-glow"></div>
+  <div class="container text-center position-relative fade-up">
+    <span class="section-tag">Get Started Today</span>
+    <h2 class="section-title mb-4">READY TO <span>DOMINATE</span><br>YOUR MARKET?</h2>
+    <p style="color:rgba(255,255,255,.55);max-width:480px;margin:0 auto 40px;line-height:1.8;font-size:.95rem;">Book a free strategy call with our team and discover exactly how Elvora can scale your brand in 90 days.</p>
+    <div class="row justify-content-center g-3 mt-2">
+      <div class="col-md-5">
+        <input type="text" class="form-control" placeholder="Your Name" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:14px 20px;border-radius:0;">
+      </div>
+      <div class="col-md-5">
+        <input type="email" class="form-control" placeholder="Your Email" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:14px 20px;border-radius:0;">
+      </div>
+      <div class="col-md-5">
+        <select class="form-select" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#aaa;padding:14px 20px;border-radius:0;">
+          <option value="" disabled selected>Service Interested In</option>
+          <option>SEO Optimization</option>
+          <option>Social Media Handling</option>
+          <option>Digital Marketing</option>
+          <option>PPC & Paid Advertising</option>
+          <option>Content Marketing</option>
+          <option>Brand Strategy</option>
+          <option>Full-Service Package</option>
+        </select>
+      </div>
+      <div class="col-md-5">
+        <input type="text" class="form-control" placeholder="Company / Brand Name" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;padding:14px 20px;border-radius:0;">
+      </div>
+      <div class="col-md-10">
+        <button class="btn btn-gold w-100" style="padding:16px;font-size:.9rem;">Book My Free Strategy Call <i class="bi bi-arrow-right ms-2"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="row gy-5">
+      <div class="col-lg-4">
+        <div class="footer-logo">
+          <img src="/mnt/user-data/uploads/Gemini_Generated_Image_u3704vu3704vu370-removebg-preview.png" alt="Elvora"/>
+        </div>
+        <p class="footer-desc">We are a premium digital marketing agency dedicated to transforming ambitious brands into market leaders through strategy, creativity, and performance.</p>
+        <div class="footer-social">
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2 offset-lg-1">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#">SEO Optimization</a></li>
+          <li><a href="#">Social Media</a></li>
+          <li><a href="#">Digital Marketing</a></li>
+          <li><a href="#">PPC Advertising</a></li>
+          <li><a href="#">Content Marketing</a></li>
+          <li><a href="#">Brand Strategy</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Process</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@elvora.agency"><i class="bi bi-envelope me-2" style="color:var(--gold)"></i>hello@elvora.agency</a></li>
+          <li><a href="tel:+923001234567"><i class="bi bi-telephone me-2" style="color:var(--gold)"></i>+92 300 123 4567</a></li>
+          <li><a href="#"><i class="bi bi-geo-alt me-2" style="color:var(--gold)"></i>Rawalpindi, Pakistan</a></li>
+        </ul>
+        <div style="margin-top:24px;padding:18px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);">
+          <div style="font-size:.78rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;">Office Hours</div>
+          <div style="font-size:.82rem;color:rgba(255,255,255,.5);">Mon – Sat: 9AM – 7PM PKT</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p>© 2025 Elvora Marketing Agency. All rights reserved.</p>
+      <div class="d-flex gap-3">
+        <a href="#" style="color:rgba(255,255,255,.3);font-size:.78rem;text-decoration:none;">Privacy Policy</a>
+        <a href="#" style="color:rgba(255,255,255,.3);font-size:.78rem;text-decoration:none;">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Navbar shrink
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.navbar');
+    nav.style.padding = window.scrollY > 60 ? '10px 0' : '18px 0';
+  });
+</script>
+</body>
+</html>
